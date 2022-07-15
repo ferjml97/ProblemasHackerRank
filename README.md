@@ -113,6 +113,8 @@ The STATION table is described as follows:
 ![image](https://user-images.githubusercontent.com/47682546/178924038-6b808f2b-0b16-45a9-b04a-f92488472687.png)
 
 
+SELECT count(city) - count(DISTINCT city) as difference
+FROM station;
     
 ## MySQL Intermediate
 
