@@ -79,6 +79,8 @@ The CITY table is described as follows:
 
 ![image](https://user-images.githubusercontent.com/47682546/178920595-f0bcf084-18a4-4b12-9079-c3281f1f4352.png)
 
+where LAT_N is the northern latitude and LONG_W is the western longitude.
+
 SELECT name
 FROM city
 WHERE countrycode = 'JPN';
@@ -100,6 +102,8 @@ from the answer.
 The STATION table is described as follows:
 
 ![image](https://user-images.githubusercontent.com/47682546/178924038-6b808f2b-0b16-45a9-b04a-f92488472687.png)
+
+where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 SELECT DISTINCT city
 FROM station
@@ -147,6 +151,250 @@ there are  options for shortest named city. Choose ABC, because it comes first a
 Note
 You can write two separate queries to get the desired output. It need not be a single query.
 
+SELECT city, length(city) 
+FROM station
+ORDER BY length(city), city ASC
+limit 1;
+
+SELECT city, length(city) 
+FROM station
+ORDER BY length(city) DESC
+limit 1;
+
+#### Weather Observation Station 6
+
+Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.
+
+Input Format
+
+The STATION table is described as follows:
+
+![image](https://user-images.githubusercontent.com/47682546/178924038-6b808f2b-0b16-45a9-b04a-f92488472687.png)
+
+where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+SELECT DISTINCT city
+FROM station
+WHERE city REGEXP "^[aeiou].*";
+
+#### Weather Observation Station 7
+
+Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
+
+Input Format
+
+The STATION table is described as follows:
+
+![image](https://user-images.githubusercontent.com/47682546/178924038-6b808f2b-0b16-45a9-b04a-f92488472687.png)
+
+where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+SELECT DISTINCT city
+FROM station
+WHERE city REGEXP "[aeiou]$";
+
+#### Weather Observation Station 8
+
+Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your
+result cannot contain duplicates.
+
+Input Format
+
+The STATION table is described as follows:
+
+![image](https://user-images.githubusercontent.com/47682546/178924038-6b808f2b-0b16-45a9-b04a-f92488472687.png)
+
+where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+SELECT DISTINCT city
+FROM station
+WHERE city REGEXP "^[aeiou].*[aeiou]$";
+
+SELECT DISTINCT city
+FROM station
+WHERE city REGEXP "^[aeiou]" AND city REGEXP "[aeiou]$";
+
+#### Weather Observation Station 9
+
+Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
+
+Input Format
+
+The STATION table is described as follows:
+
+![image](https://user-images.githubusercontent.com/47682546/178924038-6b808f2b-0b16-45a9-b04a-f92488472687.png)
+
+where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+SELECT DISTINCT city
+FROM station
+WHERE city NOT REGEXP "^[aeiou]";
+
+#### Weather Observation Station 10
+
+Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+
+Input Format
+
+The STATION table is described as follows:
+
+![image](https://user-images.githubusercontent.com/47682546/178924038-6b808f2b-0b16-45a9-b04a-f92488472687.png)
+
+where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+SELECT DISTINCT city
+FROM station
+WHERE city NOT REGEXP "[aeiou]$";
+
+#### Weather Observation Station 11
+
+Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+
+Input Format
+
+The STATION table is described as follows:
+
+![image](https://user-images.githubusercontent.com/47682546/178924038-6b808f2b-0b16-45a9-b04a-f92488472687.png)
+
+where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+SELECT DISTINCT city
+FROM station
+WHERE city NOT REGEXP "^[aeiou].*[aeiou]$";
+
+SELECT DISTINCT city
+FROM station
+WHERE city NOT REGEXP "^[aeiou]" OR city NOT REGEXP "[aeiou]$";
+
+#### Weather Observation Station 12
+
+Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.
+
+Input Format
+
+The STATION table is described as follows:
+
+![image](https://user-images.githubusercontent.com/47682546/178924038-6b808f2b-0b16-45a9-b04a-f92488472687.png)
+
+where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+SELECT DISTINCT city
+FROM station
+WHERE city NOT REGEXP "^[aeiou]" AND city NOT REGEXP "[aeiou]$";
+
+#### Higher Than 75 Marks
+
+Query the Name of any student in STUDENTS who scored higher than  Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+
+Input Format
+
+![image](https://user-images.githubusercontent.com/47682546/179628750-6bb9d4c2-6b58-48a6-819a-2be9704f2164.png)
+
+The STUDENTS table is described as follows:  The Name column only contains uppercase (A-Z) and lowercase (a-z) letters.
+
+Sample Input
+
+![image](https://user-images.githubusercontent.com/47682546/179628801-a4acc45c-7275-459e-942c-4c65bc180f63.png)
+
+Sample Output
+
+Ashley
+Julia
+Belvet
+Explanation
+
+Only Ashley, Julia, and Belvet have Marks > . If you look at the last three characters of each of their names, there are no duplicates and 'ley' < 'lia' < 'vet'.
+
+SELECT name
+FROM students
+WHERE marks > 75
+ORDER BY SUBSTRING(NAME, -3), ID ASC;
+
+#### Employee Names
+
+Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+
+Input Format
+
+The Employee table containing employee data for a company is described as follows:
+
+![image](https://user-images.githubusercontent.com/47682546/179629289-87858a02-e4f9-4f2e-88b1-b298afa86ed6.png)
+
+where employee_id is an employee's ID number, name is their name, months is the total number of months they've been working for the company, and salary is their monthly salary.
+
+Sample Input
+
+![image](https://user-images.githubusercontent.com/47682546/179629306-05efb253-6756-4d8b-8b5c-0f1515db5a47.png)
+
+Sample Output
+
+Angela
+Bonnie
+Frank
+Joe
+Kimberly
+Lisa
+Michael
+Patrick
+Rose
+Todd
+
+SELECT name
+FROM employee
+ORDER BY name ASC;
+
+#### Employee Salaries
+
+Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than  per month who have been employees for less than  months. Sort your result by ascending employee_id.
+
+Input Format
+
+The Employee table containing employee data for a company is described as follows:
+
+![image](https://user-images.githubusercontent.com/47682546/179629845-be68d83c-daaf-41ae-8066-aafe907ad95e.png)
+
+where employee_id is an employee's ID number, name is their name, months is the total number of months they've been working for the company, and salary is the their monthly salary.
+
+Sample Input
+
+![image](https://user-images.githubusercontent.com/47682546/179629879-5f28f03f-a85f-47f3-8f88-0427340b1fe1.png)
+
+Sample Output
+
+Angela
+Michael
+Todd
+Joe
+Explanation
+
+Angela has been an employee for  month and earns $3443 per month.
+
+Michael has been an employee for  months and earns $2017 per month.
+
+Todd has been an employee for  months and earns $3396 per month.
+
+Joe has been an employee for  months and earns $3573 per month.
+
+We order our output by ascending employee_id.
+
+SELECT name
+FROM employee
+WHERE salary > 2000
+    AND months < 10
+ORDER BY employee_id ASC;
+
+
+
+---
+
+
+SELECT
+FROM station
+WHERE
+
+SUBSTR(NAME,-3,3), ID ASC;
+
+ORDER BY RIGHT(NAME, 3), ID ASC;
 
 ## MySQL Intermediate
 
